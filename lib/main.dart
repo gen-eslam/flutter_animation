@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'flipped_container.dart';
+import 'example_3_3D.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const FlippedContainer(),
+      home: const ThreeDimensionAnimation(),
     );
   }
 }
