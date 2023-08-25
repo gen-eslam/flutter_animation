@@ -50,54 +50,54 @@ class DetailsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Hero(
-          flightShuttleBuilder: (
-            flightContext,
-            animation,
-            flightDirection,
-            fromHeroContext,
-            toHeroContext,
-          ) {
-            switch (flightDirection) {
-              case HeroFlightDirection.push:
-                return Material(
-                  color: Colors.transparent,
-                  child: ScaleTransition(
-                    scale: animation.drive(
-                      Tween<double>(
-                        begin: 0.0,
-                        end: 1.0,
-                      ).chain(
-                        CurveTween(
-                          curve: Curves.bounceInOut,
-                        ),
-                      ),
-                    ),
-                    child: toHeroContext.widget,
-                  ),
-                );
-              case HeroFlightDirection.pop:
-                return Material(
-                  color: Colors.transparent,
-                  child: fromHeroContext.widget,
-                );
-            }
-          },
-          tag: person.name,
-          child: Text(
-            person.emoji,
-            style: const TextStyle(
-              fontSize: 50,
-            ),
-          ),
-        ),
       ),
       body: SizedBox(
         width: double.infinity,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Hero(
+              flightShuttleBuilder: (
+                flightContext,
+                animation,
+                flightDirection,
+                fromHeroContext,
+                toHeroContext,
+              ) {
+                switch (flightDirection) {
+                  case HeroFlightDirection.push:
+                    return Material(
+                      color: Colors.transparent,
+                      child: ScaleTransition(
+                        scale: animation.drive(
+                          Tween<double>(
+                            begin: 0.0,
+                            end: 1.0,
+                          ).chain(
+                            CurveTween(
+                              curve: Curves.bounceIn,
+                            ),
+                          ),
+                        ),
+                        child: toHeroContext.widget,
+                      ),
+                    );
+                  case HeroFlightDirection.pop:
+                    return Material(
+                      color: Colors.transparent,
+                      child: fromHeroContext.widget,
+                    );
+                }
+              },
+              tag: person.name,
+              child: Text(
+                person.emoji,
+                style: const TextStyle(
+                  fontSize: 100,
+                ),
+              ),
+            ),
             Text(person.name),
             Text("${person.age} years old"),
           ],
