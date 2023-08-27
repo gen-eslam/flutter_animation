@@ -33,8 +33,7 @@ class _FlippedContainerState extends State<FlippedContainer>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Center(
+    return Center(
       child: AnimatedBuilder(
         animation: _controller,
         builder: (context, child) => Transform(
@@ -56,6 +55,6 @@ class _FlippedContainerState extends State<FlippedContainer>
           ),
         ),
       ),
-    ));
+    );
   }
 }

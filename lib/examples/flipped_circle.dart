@@ -135,56 +135,52 @@ class _FlippedCircleState extends State<FlippedCircle>
           seconds: 1,
         ),
       );
-    return Scaffold(
-      body: Center(
-        child: AnimatedBuilder(
-          animation: _counterClockwiseRotationController,
-          builder: (context, child) => Transform(
-            alignment: Alignment.center,
-            transform: Matrix4.identity()
-              ..rotateZ(_counterClockwiseRotationAnimation.value),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                AnimatedBuilder(
-                  animation: _flipController,
-                  builder: (context, child) => Transform(
-                    alignment: Alignment.centerRight,
-                    transform: Matrix4.identity()
-                      ..rotateY(_flipAnimation.value),
-                    child: ClipPath(
-                      clipper:
-                          const HalfCircleClipper(circleSide: CircleSide.left),
-                      child: Container(
-                        color: const Color(0xff0057b7),
-                        width: 100,
-                        height: 100,
+    return Center(
+      child: AnimatedBuilder(
+        animation: _counterClockwiseRotationController,
+        builder: (context, child) => Transform(
+          alignment: Alignment.center,
+          transform: Matrix4.identity()
+            ..rotateZ(_counterClockwiseRotationAnimation.value),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AnimatedBuilder(
+                animation: _flipController,
+                builder: (context, child) => Transform(
+                  alignment: Alignment.centerRight,
+                  transform: Matrix4.identity()..rotateY(_flipAnimation.value),
+                  child: ClipPath(
+                    clipper:
+                        const HalfCircleClipper(circleSide: CircleSide.left),
+                    child: Container(
+                      color: const Color(0xff0057b7),
+                      width: 100,
+                      height: 100,
+                    ),
+                  ),
+                ),
+              ),
+              AnimatedBuilder(
+                animation: _flipController,
+                builder: (context, child) => Transform(
+                  alignment: Alignment.centerLeft,
+                  transform: Matrix4.identity()..rotateY(_flipAnimation.value),
+                  child: ClipPath(
+                    clipper:
+                        const HalfCircleClipper(circleSide: CircleSide.right),
+                    child: Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        color: const Color(0xffffd700),
                       ),
                     ),
                   ),
                 ),
-                AnimatedBuilder(
-                  animation: _flipController,
-                  builder: (context, child) => Transform(
-                    alignment: Alignment.centerLeft,
-                    transform: Matrix4.identity()
-                      ..rotateY(_flipAnimation.value),
-                    child: ClipPath(
-                      clipper:
-                          const HalfCircleClipper(circleSide: CircleSide.right),
-                      child: Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          color: const Color(0xffffd700),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

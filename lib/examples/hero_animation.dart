@@ -6,36 +6,30 @@ class HeroAnimation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text("people"),
-      ),
-      body: ListView.builder(
-        itemCount: people.length,
-        itemBuilder: (context, index) {
-          final Person person = people[index];
-          return ListTile(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => DetailsPage(person: person)));
-            },
-            leading: Hero(
-              tag: person.name,
-              child: Material(
-                color: Colors.transparent,
-                child: Text(
-                  person.emoji,
-                  style: const TextStyle(fontSize: 40),
-                ),
+    return ListView.builder(
+      itemCount: people.length,
+      itemBuilder: (context, index) {
+        final Person person = people[index];
+        return ListTile(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => DetailsPage(person: person)));
+          },
+          leading: Hero(
+            tag: person.name,
+            child: Material(
+              color: Colors.transparent,
+              child: Text(
+                person.emoji,
+                style: const TextStyle(fontSize: 40),
               ),
             ),
-            title: Text(person.name),
-            subtitle: Text("${person.age} years old"),
-            trailing: const Icon(Icons.arrow_forward_ios),
-          );
-        },
-      ),
+          ),
+          title: Text(person.name),
+          subtitle: Text("${person.age} years old"),
+          trailing: const Icon(Icons.arrow_forward_ios),
+        );
+      },
     );
   }
 }
